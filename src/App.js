@@ -1,25 +1,29 @@
-import logo from './logo.svg';
-import './App.css';
+import React, { useContext } from 'react'
+import { Route, Routes } from 'react-router-dom'
+import Home from './pages/Home'
+import UserLoginResister from './components/account/UserLoginResister'
+import { AppContext } from './context/AppContextProvider'
+import Navbar from './components/Navbar'
+import CreateBlog from './pages/CreateBlog'
+import UserPost from './pages/UserPost'
+import Aboutme from './pages/Aboutme'
 
-function App() {
+const App = () => {
+  const { showLogin } = useContext(AppContext)
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div className='px-4 relative sm:px-10 md:px-14 lg:px-16 min-h-screen bg-[rgb(243,255,249)]'>
+      <Navbar />
+      {showLogin && <UserLoginResister />}
+      <Routes>
+        <Route path='/' element={<Home />} />
+        <Route path='/user_create_blog' element={<CreateBlog/>}/>
+        <Route path='/users_posts/:id' element={<UserPost/>}/>
+        <Route path='/about' element={<Aboutme/>}/>
+      </Routes>
+
     </div>
-  );
+  )
 }
 
-export default App;
+export default App
