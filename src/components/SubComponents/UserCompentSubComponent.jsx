@@ -1,10 +1,13 @@
 import axios from 'axios'
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import { MdDelete, MdDeleteForever, MdEdit } from 'react-icons/md'
 import { useNavigate, useParams } from 'react-router-dom'
 import { toast, ToastContainer } from 'react-toastify'
 
-const UserCommentSubComponent = ({setshowupdate,checkAuthor,getblogs}) => {
+const UserCommentSubComponent = ({setshowupdate,checkAuthor,getblogs,setcheckAuthor}) => {
+  const [comments,setcomments] = useState([])
+  const userName =JSON.parse(localStorage.getItem("user"))
+  console.log(comments)
   const navigat = useNavigate()
   const {id} = useParams()
   const deletPost = async()=>{
@@ -17,10 +20,39 @@ const UserCommentSubComponent = ({setshowupdate,checkAuthor,getblogs}) => {
     }, 1000);
   }
   }
+ 
+        const getcomments = async(e)=>{
+          e.preventDefault()
+          const text = e.target.text.value
+          console.log(text)
+          try {
+            const res = await axios.post(`http://localhost:5001/blog/addcomments/${id}`,{text},{headers:{"authorization":"Bearer "+localStorage.getItem("token")}})
+            e.target.reset()
+            window.location.reload()
+          } catch (error) {
+            console.log(error)
+          }
+        }
+
+
+        useEffect(()=>{
+            const getcomments = async()=>{
+              try{
+                const res = await axios.get(`http://localhost:5001/blog/comments/${id}`,{headers:{"authorization":"Bearer "+ localStorage.getItem("token")}})
+              setcomments(res.data.comment)
+              
+
+              }catch(er){
+                console.log(er)
+              }
+            }
+            getcomments()
+        },[])
   return (
     <>
     <ToastContainer/>
      <div className="min-h-fit mt-2 rounded-lg ">
+     
           <h1 className="text-center text-3xl font-semibold text-stone-800 my-3">
             {getblogs.title}
           </h1>
@@ -55,8 +87,9 @@ const UserCommentSubComponent = ({setshowupdate,checkAuthor,getblogs}) => {
             </p>
           </div>
           <br />
-          <textarea
-            name="content"
+         <form action="" onSubmit={(e)=>getcomments(e)}>
+           <textarea
+            name="text"
             className="font-mono text-sm block text-neutral-500 w-full outline-none mx-auto border border-stone-200 rounded-xl px-3 py-2"
             placeholder="whats on your mind?"
           />
@@ -66,19 +99,22 @@ const UserCommentSubComponent = ({setshowupdate,checkAuthor,getblogs}) => {
           >
             add comment
           </button>
-          {Array(5)
-            .fill("")
-            .map(() => (
-              <div className="h-fit  bg-stone-200 rounded-2xl p-2 text-neutral-800 my-3">
+         </form>
+         {
+          comments? comments.map((elm,i)=>(
+             <div className="h-fit  bg-stone-200 rounded-2xl p-2 text-neutral-800 my-3">
                 <div className="flex justify-between items-center">
                   <span className="text-neutral-500">
-                    justin bieber {Date.now()}
+                    {elm.user } 
                   </span>
-                  <MdDelete className="text-stone-700 cursor-pointer" />
+                  <span>{elm.Date.slice(0,10)}</span>
+                  
+                 {userName.name === elm.user ? <MdDelete className="text-red-700 cursor-pointer" />:"👍🏻"}
                 </div>
-                very nice blog
+                {elm.text}
               </div>
-            ))}
+          )):"no data"
+         }
         </div>
     </>
   )

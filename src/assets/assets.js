@@ -26,10 +26,12 @@ import study from "./studying-reading.gif"
 import openlaptop from "./openlaptop.gif"
 import github from "./github.png"
 import linkd_in from "./linkdin.png"
+import spiderman from "./spiderman.jpg"
 export const assets = {
     logo,
     study,
     github,
+    spiderman,
     linkd_in,
     openlaptop,
     mushishi,
