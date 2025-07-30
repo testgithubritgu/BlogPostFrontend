@@ -7,7 +7,13 @@ import { toast, ToastContainer } from 'react-toastify'
 const UserCommentSubComponent = ({setshowupdate,checkAuthor,getblogs,setcheckAuthor}) => {
   const [comments,setcomments] = useState([])
   const userName =JSON.parse(localStorage.getItem("user"))
-  console.log(comments)
+  // const deletcomment = async(i)=>{
+   
+  
+  //   const res = await axios.delete(`http://localhost:5001/blog/deletcomments/${id}`,formdata,{headers:{"authorization":"Bearer "+localStorage.getItem("token")}})
+  //   console.log(console.log(res))
+    
+  // }
   const navigat = useNavigate()
   const {id} = useParams()
   const deletPost = async()=>{
@@ -102,14 +108,14 @@ const UserCommentSubComponent = ({setshowupdate,checkAuthor,getblogs,setcheckAut
          </form>
          {
           comments? comments.map((elm,i)=>(
-             <div className="h-fit  bg-stone-200 rounded-2xl p-2 text-neutral-800 my-3">
+             <div key={i} className="h-fit  bg-stone-200 rounded-2xl p-2 text-neutral-800 my-3">
                 <div className="flex justify-between items-center">
                   <span className="text-neutral-500">
                     {elm.user } 
                   </span>
                   <span>{elm.Date.slice(0,10)}</span>
                   
-                 {userName.name === elm.user ? <MdDelete className="text-red-700 cursor-pointer" />:"👍🏻"}
+                 {userName? userName.name === elm.user ? <MdDelete  className="text-red-700 cursor-pointer" />:"👍🏻": ""}
                 </div>
                 {elm.text}
               </div>
