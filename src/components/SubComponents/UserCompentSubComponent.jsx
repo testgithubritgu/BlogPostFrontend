@@ -1,9 +1,25 @@
+import axios from 'axios'
 import React from 'react'
 import { MdDelete, MdDeleteForever, MdEdit } from 'react-icons/md'
+import { useNavigate, useParams } from 'react-router-dom'
+import { toast, ToastContainer } from 'react-toastify'
 
 const UserCommentSubComponent = ({setshowupdate,checkAuthor,getblogs}) => {
+  const navigat = useNavigate()
+  const {id} = useParams()
+  const deletPost = async()=>{
+  const reconfirm =  window.confirm("Are you sure you want to delete this blog?")
+  if(reconfirm){
+    await axios.delete( `http://localhost:5001/blog/delet/${id}`,{headers:{"authorization":"Bearer "+localStorage.getItem("token")}})
+    toast.success("delete successfully",{position:"top-center",hideProgressBar:false,pauseOnHover:true})
+    setTimeout(() => {
+      navigat("/")
+    }, 1000);
+  }
+  }
   return (
     <>
+    <ToastContainer/>
      <div className="min-h-fit mt-2 rounded-lg ">
           <h1 className="text-center text-3xl font-semibold text-stone-800 my-3">
             {getblogs.title}
@@ -22,7 +38,7 @@ const UserCommentSubComponent = ({setshowupdate,checkAuthor,getblogs}) => {
                 onClick={() => setshowupdate(true)}
                 className="cursor-pointer"
               />
-              <MdDeleteForever className="cursor-pointer text-red-500" />
+              <MdDeleteForever onClick={()=>deletPost()} className="cursor-pointer text-red-500" />
             </div>
           ) : (
             ""
