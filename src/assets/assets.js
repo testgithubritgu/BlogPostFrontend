@@ -20,8 +20,20 @@ import credit_star from './credit_star.svg'
 import profile_icon from './profile_icon.png'
 import blog from './blog.jpg'
 import aboutme from './aboutme.jpg'
+import loadingGif from "./loading.gif"
+import mushishi from "./mushishi.gif"
+import study from "./studying-reading.gif"
+import openlaptop from "./openlaptop.gif"
+import github from "./github.png"
+import linkd_in from "./linkdin.png"
 export const assets = {
     logo,
+    study,
+    github,
+    linkd_in,
+    openlaptop,
+    mushishi,
+    loadingGif,
     aboutme,
     blog,
     logo_icon,

@@ -1,41 +1,61 @@
-import React from 'react'
-import { assets } from '../assets/assets'
-import { MdDelete } from "react-icons/md";
+import React, { useContext, useEffect, useRef, useState } from "react";
+import { assets } from "../assets/assets";
+import { MdDelete, MdDeleteForever, MdEdit } from "react-icons/md";
+
+import { useParams } from "react-router-dom";
+import { AppContext } from "../context/AppContextProvider";
+import axios from "axios";
+import { IoMdClose } from "react-icons/io";
+import UpdateBloge from "./SubComponents/UpdateBloge";
+import UserCommentSubComponent from "./SubComponents/UserCompentSubComponent";
 const UserCommentsPage = () => {
-    const formOnSubmit = (e)=>{
-        e.preventDefault()
-        console.log(e.target.content.value)
-    }
+  const [showupdate, setshowupdate] = useState(false);
+  const [getblogs, setgetblogs] = useState(null);
+  const [checkAuthor,setcheckAuthor] = useState(false)
+  const [textchange, settextchange] = useState("");
+  const textareaRef = useRef(null);
+  const textinputchange = (e) => {
+    const val = e.target.value;
+    setgetblogs((prev) => ({ ...prev, [e.target.name]: val }));
+  };
+  const handleinput = () => {
+    const textarea = textareaRef.current;
+    textarea.style.height = "auto";
+    textarea.style.height = textarea.scrollHeight + "px";
+  };
+  const { id } = useParams();
+  // const { checkBlogIsPostedByUser } = useContext(AppContext);
+  const loggedUser = JSON.parse(localStorage.getItem("user"));
+
+  const formOnSubmit = (e) => {
+    e.preventDefault();
+    console.log(e.target.content.value);
+  };
+  useEffect(() => {
+    const getblogdata = async () => {
+      try {
+        const res = await axios.get(`http://localhost:5001/blog/getbyid/${id}`);
+        setgetblogs(res.data.blogs);
+        setcheckAuthor(res.data.blogs.author === loggedUser._id);
+        settextchange(res.data.blogs.content);
+      } catch (error) {
+        console.log(error);
+      }
+    };
+    getblogdata();
+  }, []);
   return (
     <>
-      <div className='min-h-fit mt-2 rounded-lg '>
-        <img src={assets.blog} className='h-[500px] w-full bg-cover rounded-xl object-cover' alt="" />
-       <h1 className='text-center text-3xl font-semibold text-stone-500 my-3'>This is music Blog</h1>
-       <div className='flex justify-between text-neutral-400 font-blogFont items-center'>
-        <span >Author: <span>swapnil</span></span>
-        <span>{Date.now()}</span>
-       </div>
-       <div>
-        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Quidem, minus id nesciunt deserunt minima recusandae reprehenderit sit laudantium debitis beatae? Labore laudantium praesentium delectus, cum quia dolorem cumque porro adipisci.</p>
-       </div>
-       <br />
-        <textarea name='content'  className='font-mono text-sm block text-neutral-500 w-full outline-none mx-auto border border-stone-200 rounded-xl px-3 py-2' placeholder='whats on your mind?' />
-        <button type='submit' className='mx-auto block py-3 px-5  bg-blue-500 text-white rounded-lg mt-3 cursor-pointer'>add comment</button>
-        {
-          Array(5).fill("").map(()=>(
-            <div className='h-fit w-full bg-stone-200 rounded-2xl p-2 text-neutral-800 my-3'>
-            <div className='flex justify-between items-center'>
-                <span className='text-neutral-500'>justin bieber {Date.now()}</span>
-            <MdDelete className='text-stone-700 cursor-pointer' />
-            </div>
-          
-            very nice blog
-        </div>
-          ))
-        }
-      </div>
+      {getblogs ? <UserCommentSubComponent getblogs={getblogs} checkAuthor={checkAuthor} setshowupdate={setshowupdate}  /> : (
+        <>
+          <div className="h-screen flex justify-center items-center ">
+            <img src={assets.loadingGif} className="h-[70px]" alt="" />
+          </div>
+        </>
+      )}
+      {showupdate && <UpdateBloge getblogs={getblogs} setshowupdate={setshowupdate} textareaRef={textareaRef} handleinput={handleinput} settextchange={settextchange} textchange={textchange} />}
     </>
-  )
-}
+  );
+};
 
-export default UserCommentsPage
+export default UserCommentsPage;

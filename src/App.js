@@ -7,12 +7,14 @@ import Navbar from './components/Navbar'
 import CreateBlog from './pages/CreateBlog'
 import UserPost from './pages/UserPost'
 import Aboutme from './pages/Aboutme'
-
+import 'react-toastify/dist/ReactToastify.css';
+import Footer from './components/Footer'
+import Contact from './components/Contact'
 const App = () => {
   const { showLogin } = useContext(AppContext)
 
   return (
-    <div className='px-4 relative sm:px-10 md:px-14 lg:px-16 min-h-screen bg-[rgb(243,255,249)]'>
+    <div className='px-4  relative sm:px-10 md:px-14 lg:px-16 min-h-screen bg-[rgb(243,255,249)]'>
       <Navbar />
       {showLogin && <UserLoginResister />}
       <Routes>
@@ -20,8 +22,9 @@ const App = () => {
         <Route path='/user_create_blog' element={<CreateBlog/>}/>
         <Route path='/users_posts/:id' element={<UserPost/>}/>
         <Route path='/about' element={<Aboutme/>}/>
+        <Route path='/contact' element={<Contact/>}/>
       </Routes>
-
+      <Footer/>
     </div>
   )
 }

@@ -5,6 +5,15 @@ import { AppContext } from "../context/AppContextProvider";
 
 const Navbar = () => {
     const [showUnderlineOnPathName,setshowUnderlineOnPathName] = useState(0)
+    const urlpathName = window.location.pathname
+   const {showLogin} = useContext(AppContext)
+   const logout =()=>{
+
+    localStorage.removeItem("user")
+    localStorage.removeItem("token")
+    setshowLogin(true)
+
+   }
     const navLinkOnclickFunction = (e,i)=>{
 setshowUnderlineOnPathName(i)
 navigate(`${e.path}`)
@@ -33,7 +42,7 @@ navigate(`${e.path}`)
             {navLinks.map((e,i)=>(
                 
                     <span  onClick={() => navLinkOnclickFunction(e,i)}
-            className={`text-neutral-500 md:text-xl tracking-wide text-sm border-gray-800 relative cursor-pointer after:content-[""] after:absolute after:left-0 after:bottom-0 after:h-[1px] after:w-full after:bg-black after:scale-x-0 after:transition-transform after:duration-300 hover:after:scale-x-100 ${showUnderlineOnPathName ===i ? "border-b border-black":""}`}>{e.pathName}</span>
+            className={`text-neutral-500 md:text-xl tracking-wide text-sm border-gray-800 relative cursor-pointer after:content-[""] after:absolute after:left-0 after:bottom-0 after:h-[1px] after:w-full after:bg-black after:scale-x-0 after:transition-transform after:duration-300 hover:after:scale-x-100 ${urlpathName ===e.path ? "border-b border-black":""}`}>{e.pathName}</span>
                
             ))}
         </div>
@@ -61,10 +70,11 @@ navigate(`${e.path}`)
         ) : (
           <div className="flex items-center gap-2 sm:gap-5">
             <button
-              onClick={() => setshowLogin(true)}
+              onClick={() => logout()}
               className="py-2 px-10 cursor-pointer bg-black text-white rounded-full "
             >
-              Login
+             logout
+              
             </button>
           </div>
         )}
