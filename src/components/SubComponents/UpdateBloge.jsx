@@ -39,7 +39,7 @@ const UpdateBloge = ({textareaRef,handleinput,settextchange,textchange,getblogs,
                 setstatusUpdate(false)
                 setshowupdate(false)
                navigate(`/users_posts/${id}`)
-               window.location.reload()
+                window.location.reload()
                 }, 2000);
             } catch (error) {
                 setstatusUpdate(true)

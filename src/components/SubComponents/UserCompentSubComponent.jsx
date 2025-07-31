@@ -35,10 +35,7 @@ const UserCommentSubComponent = ({
       });
       setTimeout(() => {
           navigat(`/`)
-          
-          
-
-      }, 1000);
+       }, 1000);
     }
   };
 
@@ -55,7 +52,9 @@ const UserCommentSubComponent = ({
         }
       );
       e.target.reset();
-      window.location.reload();
+      window.location.reload()
+      
+      
     } catch (error) {
       console.log(error);
     }
@@ -70,8 +69,9 @@ const UserCommentSubComponent = ({
       );
       navigat(`/users_posts/${id}`)
       window.location.reload()
+     
     } catch (er) {
-      console.log(er);
+      alert("internal server error")
     }
   };
 
