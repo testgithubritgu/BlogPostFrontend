@@ -14,7 +14,7 @@ const CreateBlogPost = () => {
         const title = e.target.title.value
         const content = e.target.content.value    
         try {
-          const result = await axios.post("http://localhost:5001/blog/post",blogdata,{headers:{"Content-Type":"multipart/form-data", "authorization":"Bearer "+localStorage.getItem("token")}})
+          const result = await axios.post("https://blogpostbackend-v0uv.onrender.com/blog/post",blogdata,{headers:{"Content-Type":"multipart/form-data", "authorization":"Bearer "+localStorage.getItem("token")}})
           toast.success("Created successfully!!!", {position: "top-center",autoClose: 3000,hideProgressBar: false,pauseOnHover: true,draggable: true,})
           setTimeout(() => {
             navigat("/")

@@ -22,7 +22,7 @@ const UserLoginResister = () => {
     const {name,email,password} = userData
   console.log(userData)
     try {
-      const responce = await axios.post(`http://localhost:5001/auth/${state}`,{email,name,password})
+      const responce = await axios.post(`https://blogpostbackend-v0uv.onrender.com/auth/${state}`,{email,name,password})
       if(state === 'login'){
         localStorage.setItem("token",responce.data.token)
         localStorage.setItem("user",JSON.stringify(responce.data.user))

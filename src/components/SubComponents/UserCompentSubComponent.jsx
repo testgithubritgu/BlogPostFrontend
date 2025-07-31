@@ -14,7 +14,7 @@ const UserCommentSubComponent = ({
   const userName = JSON.parse(localStorage.getItem("user"));
   // const deletcomment = async(i)=>{
 
-  //   const res = await axios.delete(`http://localhost:5001/blog/deletcomments/${id}`,formdata,{headers:{"authorization":"Bearer "+localStorage.getItem("token")}})
+  //   const res = await axios.delete(`https://blogpostbackend-v0uv.onrender.com/blog/deletcomments/${id}`,formdata,{headers:{"authorization":"Bearer "+localStorage.getItem("token")}})
   //   console.log(console.log(res))
 
   // }
@@ -25,7 +25,7 @@ const UserCommentSubComponent = ({
       "Are you sure you want to delete this blog?"
     );
     if (reconfirm) {
-      await axios.delete(`http://localhost:5001/blog/delet/${id}`, {
+      await axios.delete(`https://blogpostbackend-v0uv.onrender.com/blog/delet/${id}`, {
         headers: { authorization: "Bearer " + localStorage.getItem("token") },
       });
       toast.success("delete successfully", {
@@ -45,7 +45,7 @@ const UserCommentSubComponent = ({
     console.log(text);
     try {
       const res = await axios.post(
-        `http://localhost:5001/blog/addcomments/${id}`,
+        `https://blogpostbackend-v0uv.onrender.com/blog/addcomments/${id}`,
         { text },
         {
           headers: { authorization: "Bearer " + localStorage.getItem("token") },
@@ -60,7 +60,7 @@ const UserCommentSubComponent = ({
   const deletcomments = async (i) => {
     try {
       const res = await axios.delete(
-        `http://localhost:5001/blog/deletcomments/${id}/${i}`,
+        `https://blogpostbackend-v0uv.onrender.com/blog/deletcomments/${id}/${i}`,
         {
           headers: { "authorization": "Bearer " + localStorage.getItem("token") },
         }
@@ -75,7 +75,7 @@ const UserCommentSubComponent = ({
     const getcomments = async () => {
       try {
         const res = await axios.get(
-          `http://localhost:5001/blog/comments/${id}`,
+          `https://blogpostbackend-v0uv.onrender.com/blog/comments/${id}`,
           {
             headers: {
               authorization: "Bearer " + localStorage.getItem("token"),
@@ -122,7 +122,7 @@ const UserCommentSubComponent = ({
           <p className="text-neutral-600 flex gap-4">
             {" "}
             <img
-              src={`http://localhost:5001/images/${getblogs.blogImage}`}
+              src={`https://blogpostbackend-v0uv.onrender.com/images/${getblogs.blogImage}`}
               className="h-[500px] w-[400px] object-fill grayscale bg-cover rounded-xl "
               alt=""
             />
