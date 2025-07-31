@@ -49,7 +49,7 @@ return
     }
     
     const text = e.target.text.value;
-    console.log(text);
+  
     try {
       const res = await axios.post(
         `https://blogpostbackend-v0uv.onrender.com/blog/addcomments/${id}`,

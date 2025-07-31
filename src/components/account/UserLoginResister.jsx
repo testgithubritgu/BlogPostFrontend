@@ -20,7 +20,7 @@ const UserLoginResister = () => {
 
     e.preventDefault()
     const {name,email,password} = userData
-  console.log(userData)
+
     try {
       const responce = await axios.post(`https://blogpostbackend-v0uv.onrender.com/auth/${state}`,{email,name,password})
       if(state === 'login'){

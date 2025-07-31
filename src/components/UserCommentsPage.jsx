@@ -29,7 +29,7 @@ const UserCommentsPage = () => {
 
   const formOnSubmit = (e) => {
     e.preventDefault();
-    console.log(e.target.content.value);
+  
   };
   useEffect(() => {
     const getblogdata = async () => {
@@ -49,7 +49,7 @@ const UserCommentsPage = () => {
       {getblogs ? <UserCommentSubComponent getblogs={getblogs} setgetblogs={setgetblogs} setcheckAuthor={setcheckAuthor} checkAuthor={checkAuthor} setshowupdate={setshowupdate}  /> : (
         <>
           <div className="h-screen flex justify-center items-center ">
-            <img src={assets.loadingGif} className="h-[70px]" alt="" />
+            <img src={assets.penguin} className="h-[70px]" alt="" />
           </div>
         </>
       )}

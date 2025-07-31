@@ -48,7 +48,7 @@ const AllBlogData = () => {
         ))
       }
     <div className={`w-full ${handleloader} ` }>
-      <img src={assets.loadingGif} className='h-[200px] mx-auto' alt="" />
+      <img src={assets.penguin} className='h-[200px] mx-auto' alt="" />
     </div>
       
 

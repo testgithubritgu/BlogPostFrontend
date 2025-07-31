@@ -27,10 +27,12 @@ import openlaptop from "./openlaptop.gif"
 import github from "./github.png"
 import linkd_in from "./linkdin.png"
 import spiderman from "./spiderman.jpg"
+import penguin from "./bar-penguin.gif"
 export const assets = {
     logo,
     study,
     github,
+    penguin,
     spiderman,
     linkd_in,
     openlaptop,
