@@ -34,7 +34,10 @@ const UserCommentSubComponent = ({
         pauseOnHover: true,
       });
       setTimeout(() => {
-        navigat("/");
+          navigat(`/`)
+          
+          
+
       }, 1000);
     }
   };
@@ -65,6 +68,7 @@ const UserCommentSubComponent = ({
           headers: { "authorization": "Bearer " + localStorage.getItem("token") },
         }
       );
+      navigat(`/users_posts/${id}`)
       window.location.reload()
     } catch (er) {
       console.log(er);

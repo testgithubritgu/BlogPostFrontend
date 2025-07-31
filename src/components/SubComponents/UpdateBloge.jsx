@@ -1,11 +1,13 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { assets } from '../../assets/assets'
 import { MdEdit, MdDeleteForever } from "react-icons/md";
 import { IoMdClose } from 'react-icons/io';
 import axios from 'axios';
-import { useParams } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 import { toast, ToastContainer } from 'react-toastify';
 const UpdateBloge = ({textareaRef,handleinput,settextchange,textchange,getblogs,setshowupdate}) => {
+
+  const navigate = useNavigate()
     const [blogdata,setblogdata] = useState({})
     const [handetitle,settitle] = useState(getblogs?.title)
         const [statusUpdate,setstatusUpdate] = useState(false)
@@ -36,12 +38,14 @@ const UpdateBloge = ({textareaRef,handleinput,settextchange,textchange,getblogs,
                 setTimeout(() => {
                 setstatusUpdate(false)
                 setshowupdate(false)
-                window.location.reload()
+               navigate(`/users_posts/${id}`)
+               window.location.reload()
                 }, 2000);
             } catch (error) {
                 setstatusUpdate(true)
             }
         }
+
   return (
     <>
     <ToastContainer/>
