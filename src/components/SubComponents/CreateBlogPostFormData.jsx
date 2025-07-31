@@ -1,7 +1,12 @@
 import React, { useRef, useState } from 'react'
+import { MdOutlineEmojiEmotions } from "react-icons/md";
 import { assets } from '../../assets/assets'
+import EmojiPicker from 'emoji-picker-react';
 const CreateBlogPostFormData = ({setblogdata}) => {
   const [imgcontroller,setimgcontroler] = useState(assets.blog)
+  const [showImagePicker,setshowImagePicker] = useState(false)
+  const [getImageData,setgetImageData] = useState([])
+
   const textareaRef = useRef(null);
   const onChangeinput = (e)=>{
 
@@ -15,11 +20,18 @@ const CreateBlogPostFormData = ({setblogdata}) => {
         }
   return (
     <>
-     <div className='md:w-[80%] w-screen  mx-auto '>
+     <div className='md:w-[80%] w-screen  mx-auto  relative'>
        <img src={imgcontroller} className='md:h-[500px] h-[200px] md:w-full w-[100%]  bg-cover rounded-xl object-cover' alt="" />
         <input type='file' onChange={(e)=>onChangeinput(e)} placeholder='' name='file' className='py-2 px-4  mx-auto block cursor-pointer text-neutral-800 font-normal  rounded-full text-sm mt-2'/>
-        <input onChange={(e)=>onChangeinput(e)} type="text" name='title' className='text-neutral-500 block w-full my-3 outline-none mx-auto border border-stone-200 rounded-xl px-3 py-2' placeholder='title' />
-        <textarea ref={textareaRef} onChange={(e)=>onChangeinput(e)} name='content'  className='block text-neutral-500 w-full outline-none mx-auto border border-stone-200 rounded-xl px-3 py-2' placeholder='Tell Your Story' />
+    
+          <div className='flex items-center  bg-white border border-stone-200 rounded-xl my-4'>
+          <input onChange={(e)=>onChangeinput(e)} type="text" name='title' className='text-neutral-500 block w-full my-1 outline-none mx-auto   rounded-xl px-3 py-2' placeholder='title' />
+          <MdOutlineEmojiEmotions onClick={()=>setshowImagePicker(!showImagePicker)} className='text-[30px] text-orange-500  cursor-pointer mr-3' />
+          </div>
+          {showImagePicker &&  <div className='w-full flex justify-end absolute'>
+            <EmojiPicker   height={300} width={500} />
+          </div>}
+            <textarea ref={textareaRef} onChange={(e)=>onChangeinput(e)} name='content'  className='block text-neutral-500 w-full outline-none mx-auto border border-stone-200 rounded-xl px-3 py-2' placeholder='Tell Your Story' />
         <button type='submit' className='mx-auto block py-3 px-5  bg-blue-500 text-white rounded-lg mt-3 cursor-pointer'>publish</button>
      </div>
     

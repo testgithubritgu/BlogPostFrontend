@@ -10,6 +10,7 @@ import Aboutme from './pages/Aboutme'
 import 'react-toastify/dist/ReactToastify.css';
 import Footer from './components/Footer'
 import Contact from './components/Contact'
+import AddEmoji from './Emoji/AddEmoji'
 const App = () => {
   const { showLogin } = useContext(AppContext)
 
@@ -24,7 +25,8 @@ const App = () => {
         <Route path='/about' element={<Aboutme/>}/>
         <Route path='/contact' element={<Contact/>}/>
       </Routes>
-      {/* <Footer/> */}
+      <AddEmoji/>
+      <Footer/>
     </div>
   )
 }

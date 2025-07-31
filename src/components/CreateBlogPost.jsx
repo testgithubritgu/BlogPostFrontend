@@ -26,7 +26,7 @@ return (
     <>
     <ToastContainer/>
       <form onSubmit={(e)=>formOnSubmit(e)} className='min-h-fit mt-2 rounded-lg '>
-        <CreateBlogPostFormData  setblogdata={setblogdata}/>
+        <CreateBlogPostFormData blogdata={blogdata}  setblogdata={setblogdata}/>
       </form>
     </>
   )
