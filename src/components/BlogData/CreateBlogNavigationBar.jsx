@@ -20,7 +20,7 @@ const CreateBlogNavigationBar = () => {
     <div className='flex justify-center gap-2 w-full  items-start text-left   '>
         {
             categeries.map((e,i)=>(
-                <button onClick={(e)=>setcheck(i)} className={`py-3 max-w-[200px] rounded-md w-full text-left px-3  border border-stone-300 ${check === i?"bg-blue-500 text-white":""} transition-all duration-300 hover:bg-blue-500 hover:text-white`}>{e.name}</button>
+                <button key={i} onClick={(e)=>setcheck(i)} className={`py-3 max-w-[200px] rounded-md w-full text-left px-3  border border-stone-300 ${check === i?"bg-blue-500 text-white":""} transition-all duration-300 hover:bg-blue-500 hover:text-white`}>{e.name}</button>
             ))
         }
     </div>

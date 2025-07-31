@@ -7,7 +7,7 @@ export default function Footer() {
     <>
       <div className="text-center text-sm text-gray-700 bg-slate-100 mt-6 pt-24 min-h-[400px] ">
   <p className='text-sm my-4'>👨‍💻 Built with passion by <span className="font-semibold text-xl text-gray-700">Swapnil</span></p>
-  <p>🚀 Sharing my web development journey, tips, and projects — one line of code at a time.</p>
+  <p>🚀 Sharing my web development journey, tips, and projects  one line of code at a time.</p>
   <p className="mt-2">&copy; {new Date().getFullYear()} Code with Swapnil. All rights reserved.</p>
   <div className="flex justify-center gap-4 mt-10">
   <a href="https://github.com/testgithubritgu" target="_blank" className="hover:text-blue-500 "><img src={git} className='h-11 ' alt="" /></a>

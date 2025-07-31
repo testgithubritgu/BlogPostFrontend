@@ -12,6 +12,7 @@ const UserCommentSubComponent = ({
 }) => {
   const [comments, setcomments] = useState([]);
   const userName = JSON.parse(localStorage.getItem("user"));
+  const [textfield,settextfield] = useState(false)
   // const deletcomment = async(i)=>{
 
   //   const res = await axios.delete(`https://blogpostbackend-v0uv.onrender.com/blog/deletcomments/${id}`,formdata,{headers:{"authorization":"Bearer "+localStorage.getItem("token")}})
@@ -41,6 +42,12 @@ const UserCommentSubComponent = ({
 
   const getcomments = async (e) => {
     e.preventDefault();
+    if(e.target.text.value === ''){
+settextfield(true)
+
+return
+    }
+    
     const text = e.target.text.value;
     console.log(text);
     try {
@@ -137,12 +144,12 @@ const UserCommentSubComponent = ({
         <form action="" onSubmit={(e) => getcomments(e)}>
           <textarea
             name="text"
-            className="font-mono text-sm block text-neutral-500 w-full outline-none mx-auto border border-stone-200 rounded-xl px-3 py-2"
+            className={`font-mono text-sm block text-neutral-500 w-full outline-none mx-auto border ${textfield ? "border-red-500":"border-stone-500"} rounded-xl px-3 py-2`}
             placeholder="whats on your mind?"
           />
           <button
             type="submit"
-            className="mx-auto block py-3 px-5  bg-blue-500 text-white rounded-lg mt-3 cursor-pointer"
+            className="mx-auto block py-3 px-5 active:scale-[0.94] bg-blue-500 text-white rounded-lg mt-3 cursor-pointer"
           >
             add comment
           </button>

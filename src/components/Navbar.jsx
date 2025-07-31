@@ -2,6 +2,10 @@ import React, { useContext, useState } from "react";
 import { assets } from "../assets/assets";
 import { Link, useNavigate } from "react-router-dom";
 import { AppContext } from "../context/AppContextProvider";
+import { IoExitOutline } from "react-icons/io5";
+import { FaHome } from "react-icons/fa";
+import { FaPhoneAlt } from "react-icons/fa";
+import { CgProfile } from "react-icons/cg";
 
 const Navbar = () => {
     const [showUnderlineOnPathName,setshowUnderlineOnPathName] = useState(0)
@@ -19,9 +23,12 @@ setshowUnderlineOnPathName(i)
 navigate(`${e.path}`)
     }
   const navLinks = [
-    {pathName:"home",path:"/"},
-    {pathName:"about",path:"/about"},
-    {pathName:"contact",path:"/contact"}
+    {pathName:"home",path:"/",icon:<FaHome />},
+    {pathName:"about",path:"/about",icon:<CgProfile />},
+    {pathName:"contact",path:"/contact",icon:<FaPhoneAlt />}
+  
+
+
    
   ]
     const { user } = useContext(AppContext);
@@ -38,11 +45,16 @@ navigate(`${e.path}`)
           blo<span className="text-orange-500 ">g</span>
         </span>
       </Link>
-        <div className="align-text-bottom space-x-4   px-2  ">
+        <div className="align-text-bottom space-x-4 flex  px-2  ">
             {navLinks.map((e,i)=>(
-                
-                    <span  onClick={() => navLinkOnclickFunction(e,i)}
-            className={`text-neutral-500 md:text-xl tracking-wide text-sm border-gray-800 relative cursor-pointer after:content-[""] after:absolute after:left-0 after:bottom-0 after:h-[1px] after:w-full after:bg-black after:scale-x-0 after:transition-transform after:duration-300 hover:after:scale-x-100 ${urlpathName ===e.path ? "border-b border-black":""}`}>{e.pathName}</span>
+              <div key={i}>
+
+              <span  onClick={() => navLinkOnclickFunction(e,i)}
+              className={`hidden sm:block text-neutral-500 md:text-xl tracking-wide text-sm border-gray-800 relative cursor-pointer after:content-[""] after:absolute after:left-0 after:bottom-0 after:h-[1px] after:w-full after:bg-black after:scale-x-0 after:transition-transform after:duration-300 hover:after:scale-x-100 ${urlpathName ===e.path ? "border-b border-black":""}`}>{e.pathName}</span>
+              <span className="visible sm:hidden text-neutral-700 text-1xl">
+                {e.icon}
+              </span>
+              </div>
                
             ))}
         </div>
@@ -71,11 +83,12 @@ navigate(`${e.path}`)
           <div className="flex items-center gap-2 sm:gap-5">
             <button
               onClick={() => logout()}
-              className="py-2 px-10 cursor-pointer bg-black text-white rounded-full "
+              className="hidden sm:block py-2 px-10 cursor-pointer bg-black text-white rounded-full "
             >
              logout
               
             </button>
+            <IoExitOutline  onClick={() => logout()} className="block sm:hidden text-2xl" />
           </div>
         )}
       </div>

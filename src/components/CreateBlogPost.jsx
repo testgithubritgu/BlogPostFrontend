@@ -6,11 +6,25 @@ import { useNavigate } from 'react-router-dom';
 import CreateBlogPostFormData from './SubComponents/CreateBlogPostFormData';
 const CreateBlogPost = () => {
   const [blogdata,setblogdata] = useState({})
+  const [border,setborder] = useState(false)
   const navigat = useNavigate()
 
   //handle form submit
   const formOnSubmit = async (e)=>{
         e.preventDefault()
+        if(e.target.title.value === "" || e.target.content.value === "" || e.target.file === ""){
+          if(e.target.file.files.length === 0){
+            toast.warning("image😅 required")
+            return 
+          }
+    
+          if(e.target.file === ""){
+            toast.warning("image😅 required")
+            return
+          }
+            setborder(true)
+            return
+        }
         const title = e.target.title.value
         const content = e.target.content.value    
         try {
@@ -26,7 +40,7 @@ return (
     <>
     <ToastContainer/>
       <form onSubmit={(e)=>formOnSubmit(e)} className='min-h-fit mt-2 rounded-lg '>
-        <CreateBlogPostFormData blogdata={blogdata}  setblogdata={setblogdata}/>
+        <CreateBlogPostFormData border={border} blogdata={blogdata}  setblogdata={setblogdata}/>
       </form>
     </>
   )

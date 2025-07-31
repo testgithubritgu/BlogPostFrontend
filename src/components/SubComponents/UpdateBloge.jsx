@@ -38,7 +38,7 @@ const UpdateBloge = ({textareaRef,handleinput,settextchange,textchange,getblogs,
                 setTimeout(() => {
                 setstatusUpdate(false)
                 setshowupdate(false)
-               navigate(`/`)
+               navigate(`/users_posts/${id}`)
                 window.location.reload()
                 }, 2000);
             } catch (error) {
