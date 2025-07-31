@@ -67,7 +67,7 @@ const UserCommentSubComponent = ({
           headers: { "authorization": "Bearer " + localStorage.getItem("token") },
         }
       );
-      navigat(`/`)
+      navigat(`/users_posts/${id}`)
       window.location.reload()
      
     } catch (er) {

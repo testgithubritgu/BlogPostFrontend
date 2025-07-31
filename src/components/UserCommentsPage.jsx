@@ -46,7 +46,7 @@ const UserCommentsPage = () => {
   }, []);
   return (
     <>
-      {getblogs ? <UserCommentSubComponent getblogs={getblogs} setcheckAuthor={setcheckAuthor} checkAuthor={checkAuthor} setshowupdate={setshowupdate}  /> : (
+      {getblogs ? <UserCommentSubComponent getblogs={getblogs} setgetblogs={setgetblogs} setcheckAuthor={setcheckAuthor} checkAuthor={checkAuthor} setshowupdate={setshowupdate}  /> : (
         <>
           <div className="h-screen flex justify-center items-center ">
             <img src={assets.loadingGif} className="h-[70px]" alt="" />
