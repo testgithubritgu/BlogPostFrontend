@@ -11,6 +11,7 @@ const CreateBlogPost = () => {
 
   //handle form submit
   const formOnSubmit = async (e)=>{
+    
         e.preventDefault()
         if(e.target.title.value === "" || e.target.content.value === "" || e.target.file === ""){
           if(e.target.file.files.length === 0){
@@ -25,10 +26,12 @@ const CreateBlogPost = () => {
             setborder(true)
             return
         }
-        const title = e.target.title.value
-        const content = e.target.content.value    
+          const formData = new FormData()
+          formData.append("title",blogdata.title)   
+          formData.append("content",blogdata.content)   
+          formData.append("file",blogdata.file)   
         try {
-          const result = await axios.post("https://blogpostbackend-v0uv.onrender.com/blog/post",blogdata,{headers:{"Content-Type":"multipart/form-data", "authorization":"Bearer "+localStorage.getItem("token")}})
+          const result = await axios.post("https://blogpostbackend-v0uv.onrender.com/blog/post",formData,{headers:{"Content-Type":"multipart/form-data", "authorization":"Bearer "+localStorage.getItem("token")}})
           toast.success("Created successfully!!!", {position: "top-center",autoClose: 3000,hideProgressBar: false,pauseOnHover: true,draggable: true,})
           setTimeout(() => {
             navigat("/")
