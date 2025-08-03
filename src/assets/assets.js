@@ -28,8 +28,12 @@ import github from "./github.png"
 import linkd_in from "./linkdin.png"
 import spiderman from "./spiderman.jpg"
 import penguin from "./bar-penguin.gif"
+import cavman from "./cavman.gif"
+import dummy from "./dummy.jpg"
 export const assets = {
     logo,
+    dummy,
+    cavman,
     study,
     github,
     penguin,

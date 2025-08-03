@@ -6,15 +6,17 @@ import axios from "axios";
 import { useNavigate } from "react-router-dom";
 // import { AppContext } from '../context/AppContext'
 const UserLoginResister = () => {
+
   const [checkerror,setcheckerror] = useState(false)
   const navigate = useNavigate()
   const [state, setstate] = useState("login");
-  const { setshowlogin } = useContext(AppContext);
+  
   const [userData,setuserData] = useState({})
   const oninputChange = (e)=>{
     const val = e.target.value
     setuserData(prev=>({...prev,[e.target.name]:val}))
   }
+  
 
   const registerUser =async (e)=>{
 
@@ -22,10 +24,11 @@ const UserLoginResister = () => {
     const {name,email,password} = userData
 
     try {
-      const responce = await axios.post(`https://blogpostbackend-v0uv.onrender.com/auth/${state}`,{email,name,password})
+      const responce = await axios.post(`http://localhost:5001/auth/${state}`,{email,name,password})
       if(state === 'login'){
         localStorage.setItem("token",responce.data.token)
         localStorage.setItem("user",JSON.stringify(responce.data.user))
+      
         window.location.reload()
       }else{
         
@@ -53,6 +56,7 @@ const UserLoginResister = () => {
         </h1> */}
         <p className="text-sm">Welcome back! Please sign in to continue</p>
         {state !== "login" && (
+          <>
           <div className="border px-6 py-2 flex items-center gap-2 rounded-full mt-5">
             <img src={assets.profile_icon} width={14} alt="" />
             <input
@@ -63,6 +67,8 @@ const UserLoginResister = () => {
               placeholder="Full name"
             />
           </div>
+         
+          </>
         )}
         <div className="border px-6 py-2 flex items-center gap-2 rounded-full mt-4">
           <img src={assets.email_icon} width={14} alt="" />

@@ -32,7 +32,7 @@ const UpdateBloge = ({textareaRef,handleinput,settextchange,textchange,getblogs,
             }
        
             try {
-                const responce = await axios.put(`https://blogpostbackend-v0uv.onrender.com/blog/update/${id}`,formData,{headers:{"Content-Type":"multipart/form-data","authorization":"Bearer "+localStorage.getItem("token")}})
+                const responce = await axios.put(`http://localhost:5001/blog/update/${id}`,formData,{headers:{"Content-Type":"multipart/form-data","authorization":"Bearer "+localStorage.getItem("token")}})
                 toast.success("update successfully",{position: "top-center",autoClose: 3000,hideProgressBar: false,pauseOnHover: true,draggable: true,})
                 
                 setTimeout(() => {

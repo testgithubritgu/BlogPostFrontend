@@ -22,20 +22,20 @@ const AllBlogData = () => {
   }
   useEffect(()=>{
     const getBolgesData = async ()=>{
-      const res = await axios.get("https://blogpostbackend-v0uv.onrender.com/blog/get")
+      const res = await axios.get("http://localhost:5001/blog/get")
       sethandleloader("hidden")
       setuserdata(res.data.blog)
     }
     getBolgesData()
   },[])
   return (
-    <div className='text-left relative w-full flex justify-center sm:px-4 items-center flex-wrap gap-4' >
+    <div className='text-left relative  w-full flex justify-center sm:px-4 items-center flex-wrap gap-4' >
       {
         userdata && userdata.map((e,i)=>(
           <div key={i} onClick={()=>blogOnclickFunction(e)} className='p-2 min-h-[400px] cursor-pointer  w-[300px] text-neutral-500 border border-stone-200 rounded-lg  text-left hover:scale-[1.02] transition-all duration-300 shadow-md hover:shadow-2xl'>
          
                 <div className='mb-1 '>
-                    <img src={`https://blogpostbackend-v0uv.onrender.com/images/${e.blogImage}`} className='h-[200px] w-full'  alt="" />
+                    <img src={`http://localhost:5001/images/${e.blogImage}`} className='h-[200px] w-full'  alt="" />
                 </div>
                
                 <h1 className='text-stone-700 text-center'>{e.categeries}</h1>

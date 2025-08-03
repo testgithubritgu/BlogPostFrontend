@@ -8,13 +8,17 @@ import { FaPhoneAlt } from "react-icons/fa";
 import { CgProfile } from "react-icons/cg";
 
 const Navbar = () => {
+  const { setshowLogin,userName } = useContext(AppContext);
+   const {showuseraccount,setshowuseraccount} =useContext(AppContext)
     const [showUnderlineOnPathName,setshowUnderlineOnPathName] = useState(0)
     const urlpathName = window.location.pathname
    const {showLogin} = useContext(AppContext)
+  
    const logout =()=>{
 
     localStorage.removeItem("user")
     localStorage.removeItem("token")
+
     setshowLogin(true)
 
    }
@@ -33,7 +37,6 @@ navigate(`${e.path}`)
   ]
     const { user } = useContext(AppContext);
   const [profile, setprofile] = useState(false);
-  const { setshowLogin } = useContext(AppContext);
   const navigate = useNavigate();
   const showLogoutFeatur = () => {
     setprofile(!profile);
@@ -80,14 +83,19 @@ navigate(`${e.path}`)
             </div>
           </div>
         ) : (
-          <div className="flex items-center gap-2 sm:gap-5">
-            <button
+          <div className="flex relative items-center  gap-2 sm:gap-5">
+            <div onClick={()=>setshowuseraccount(!showuseraccount)} className="flex justify-center group items-center italic gap-4 cursor-pointer">
+              <img src={assets.dummy} className="h-7" alt="" />
+              <h1>{`Welcome ${userName}😇`}</h1>
+           
+         { showuseraccount &&  <button
               onClick={() => logout()}
-              className="hidden sm:block py-2 px-10 cursor-pointer bg-black text-white rounded-full "
-            >
-             logout
+              className=" absolute -bottom-12  py-2 px-10 cursor-pointer bg-gray-900 text-white rounded-full "
+              >
+              logout
               
-            </button>
+              </button>}
+              </div>
             <IoExitOutline  onClick={() => logout()} className="block sm:hidden text-2xl" />
           </div>
         )}

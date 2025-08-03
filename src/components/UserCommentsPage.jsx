@@ -34,7 +34,7 @@ const UserCommentsPage = () => {
   useEffect(() => {
     const getblogdata = async () => {
       try {
-        const res = await axios.get(`https://blogpostbackend-v0uv.onrender.com/blog/getbyid/${id}`);
+        const res = await axios.get(`http://localhost:5001/blog/getbyid/${id}`);
         setgetblogs(res.data.blogs);
         setcheckAuthor(res.data.blogs.author === loggedUser._id);
         settextchange(res.data.blogs.content);

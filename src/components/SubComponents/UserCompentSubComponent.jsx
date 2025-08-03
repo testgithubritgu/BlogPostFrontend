@@ -1,9 +1,11 @@
 import axios from "axios";
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { MdDelete, MdDeleteForever, MdEdit } from "react-icons/md";
 import { useNavigate, useParams } from "react-router-dom";
 import { toast, ToastContainer } from "react-toastify";
+import { AppContext } from "../../context/AppContextProvider";
 
+import LikeDislikes from "./LikeDislikes";
 const UserCommentSubComponent = ({
   setshowupdate,
   checkAuthor,
@@ -13,6 +15,9 @@ const UserCommentSubComponent = ({
   const [comments, setcomments] = useState([]);
   const userName = JSON.parse(localStorage.getItem("user"));
   const [textfield,settextfield] = useState(false)
+  const {isAdmin} = useContext(AppContext)
+
+  console.log(isAdmin)
   // const deletcomment = async(i)=>{
 
   //   const res = await axios.delete(`https://blogpostbackend-v0uv.onrender.com/blog/deletcomments/${id}`,formdata,{headers:{"authorization":"Bearer "+localStorage.getItem("token")}})
@@ -26,7 +31,7 @@ const UserCommentSubComponent = ({
       "Are you sure you want to delete this blog?"
     );
     if (reconfirm) {
-      await axios.delete(`https://blogpostbackend-v0uv.onrender.com/blog/delet/${id}`, {
+      await axios.delete(`http://localhost:5001/blog/delet/${id}`, {
         headers: { authorization: "Bearer " + localStorage.getItem("token") },
       });
       toast.success("delete successfully", {
@@ -52,7 +57,7 @@ return
   
     try {
       const res = await axios.post(
-        `https://blogpostbackend-v0uv.onrender.com/blog/addcomments/${id}`,
+        `http://localhost:5001/blog/addcomments/${id}`,
         { text },
         {
           headers: { authorization: "Bearer " + localStorage.getItem("token") },
@@ -69,7 +74,7 @@ return
   const deletcomments = async (i) => {
     try {
       const res = await axios.delete(
-        `https://blogpostbackend-v0uv.onrender.com/blog/deletcomments/${id}/${i}`,
+        `http://localhost:5001/blog/deletcomments/${id}/${i}`,
         {
           headers: { "authorization": "Bearer " + localStorage.getItem("token") },
         }
@@ -86,7 +91,7 @@ return
     const getcomments = async () => {
       try {
         const res = await axios.get(
-          `https://blogpostbackend-v0uv.onrender.com/blog/comments/${id}`,
+          `http://localhost:5001/blog/comments/${id}`,
           {
             headers: {
               authorization: "Bearer " + localStorage.getItem("token"),
@@ -94,6 +99,7 @@ return
           }
         );
         setcomments(res.data.comment);
+     
       } catch (er) {
         console.log(er);
       }
@@ -115,7 +121,7 @@ return
           <span>{getblogs?.createdAt?.slice(0, 10)}</span>
         </div>
 
-        {checkAuthor ? (
+        {checkAuthor || isAdmin ? (
           <div className="w-full flex place-content-end my-4 space-x-3 text-3xl ">
             <MdEdit
               onClick={() => setshowupdate(true)}
@@ -133,15 +139,18 @@ return
           <p className="text-neutral-600 flex gap-4">
             {" "}
             <img
-              src={`https://blogpostbackend-v0uv.onrender.com/images/${getblogs.blogImage}`}
-              className="h-[500px] w-[400px] object-fill grayscale bg-cover rounded-xl "
+              src={`http://localhost:5001/images/${getblogs.blogImage}`}
+              className="h-[480px] w-[400px] object-fill grayscale bg-cover rounded-xl "
               alt=""
             />
             {getblogs.content}{" "}
           </p>
         </div>
         <br />
+
+        <LikeDislikes/>
         <form action="" onSubmit={(e) => getcomments(e)}>
+
           <textarea
             name="text"
             className={`font-mono text-sm block text-neutral-500 w-full outline-none mx-auto border ${textfield ? "border-red-500":"border-stone-500"} rounded-xl px-3 py-2`}
@@ -154,7 +163,7 @@ return
             add comment
           </button>
         </form>
-        {comments
+        {comments.length >0 
           ? comments.map((elm, i) => (
               <div
                 key={i}
@@ -164,8 +173,8 @@ return
                   <span className="text-neutral-500">{elm.user}</span>
                   <span>{elm.Date.slice(0, 10)}</span>
 
-                  {userName ? (
-                    userName.name === elm.user ? (
+                  {userName  ? (
+                    userName.name === elm.user  || isAdmin? (
                       <MdDelete
                         onClick={() => deletcomments(i)}
                         className="text-red-700 cursor-pointer"
@@ -180,7 +189,9 @@ return
                 {elm.text}
               </div>
             ))
-          : "no data"}
+          : (<div className="h-fit text-center italic   bg-stone-200 rounded-2xl p-2 text-neutral-400 my-3">
+            <p>Looks like no one has commented yet. Want to be the first?🥹</p>
+          </div>)}
       </div>
     </>
   );

@@ -11,22 +11,27 @@ import 'react-toastify/dist/ReactToastify.css';
 import Footer from './components/Footer'
 import Contact from './components/Contact'
 import AddEmoji from './Emoji/AddEmoji'
+import Notfound404 from './pages/Notfound404'
 const App = () => {
   const { showLogin } = useContext(AppContext)
-
+const {showuseraccount,setshowuseraccount} =useContext(AppContext)
   return (
-    <div className='px-4  relative sm:px-10 md:px-14 lg:px-16 min-h-screen bg-[rgb(243,255,249)]'>
+    <div  className='px-4  relative sm:px-10 md:px-14 lg:px-16 min-h-screen bg-[rgb(243,255,249)]'>
       <Navbar />
       {showLogin && <UserLoginResister />}
-      <Routes>
+      <div onClick={()=>setshowuseraccount(false)}>      
+        <Routes>
         <Route path='/' element={<Home />} />
         <Route path='/user_create_blog' element={<CreateBlog/>}/>
         <Route path='/users_posts/:id' element={<UserPost/>}/>
         <Route path='/about' element={<Aboutme/>}/>
         <Route path='/contact' element={<Contact/>}/>
+        <Route path='*' element={<Notfound404/>}/>
       </Routes>
       <AddEmoji/>
       <Footer/>
+      </div>
+
     </div>
   )
 }
