@@ -12,6 +12,7 @@ import Footer from './components/Footer'
 import Contact from './components/Contact'
 import AddEmoji from './Emoji/AddEmoji'
 import Notfound404 from './pages/Notfound404'
+import HistoryPage from './pages/HistoryPage'
 const App = () => {
   const { showLogin } = useContext(AppContext)
 const {showuseraccount,setshowuseraccount} =useContext(AppContext)
@@ -26,6 +27,7 @@ const {showuseraccount,setshowuseraccount} =useContext(AppContext)
         <Route path='/users_posts/:id' element={<UserPost/>}/>
         <Route path='/about' element={<Aboutme/>}/>
         <Route path='/contact' element={<Contact/>}/>
+        <Route path='/history' element={<HistoryPage/>}/>
         <Route path='*' element={<Notfound404/>}/>
       </Routes>
       <AddEmoji/>

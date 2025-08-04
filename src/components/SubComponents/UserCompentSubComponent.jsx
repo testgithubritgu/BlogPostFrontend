@@ -17,7 +17,7 @@ const UserCommentSubComponent = ({
   const [textfield,settextfield] = useState(false)
   const {isAdmin} = useContext(AppContext)
 
-  console.log(isAdmin)
+
   // const deletcomment = async(i)=>{
 
   //   const res = await axios.delete(`https://blogpostbackend-v0uv.onrender.com/blog/deletcomments/${id}`,formdata,{headers:{"authorization":"Bearer "+localStorage.getItem("token")}})
@@ -54,11 +54,11 @@ return
     }
     
     const text = e.target.text.value;
-  
+  const requrl = window.location.href
     try {
       const res = await axios.post(
         `http://localhost:5001/blog/addcomments/${id}`,
-        { text },
+        { text ,requrl},
         {
           headers: { authorization: "Bearer " + localStorage.getItem("token") },
         }

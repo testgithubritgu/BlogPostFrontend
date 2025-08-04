@@ -26,9 +26,11 @@ const UpdateBloge = ({textareaRef,handleinput,settextchange,textchange,getblogs,
             const formData = new FormData()
             formData.append("title",title)
             formData.append("content",content)
+            formData.append("requrl",window.location.href)
             if(fileData){
 
                 formData.append("file",fileData)
+
             }
        
             try {

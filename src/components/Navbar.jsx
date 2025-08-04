@@ -6,6 +6,7 @@ import { IoExitOutline } from "react-icons/io5";
 import { FaHome } from "react-icons/fa";
 import { FaPhoneAlt } from "react-icons/fa";
 import { CgProfile } from "react-icons/cg";
+import HistoryPage from "../pages/HistoryPage";
 
 const Navbar = () => {
   const { setshowLogin,userName } = useContext(AppContext);
@@ -29,7 +30,8 @@ navigate(`${e.path}`)
   const navLinks = [
     {pathName:"home",path:"/",icon:<FaHome />},
     {pathName:"about",path:"/about",icon:<CgProfile />},
-    {pathName:"contact",path:"/contact",icon:<FaPhoneAlt />}
+    {pathName:"contact",path:"/contact",icon:<FaPhoneAlt />},
+    {pathName:"myHistory",path:"/history",icon:<HistoryPage />}
   
 
 
