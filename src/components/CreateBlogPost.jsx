@@ -32,7 +32,7 @@ const CreateBlogPost = () => {
           formData.append("file",blogdata.file)   
                formData.append("requrl",window.location.href)
         try {
-          const result = await axios.post("https://blog-post-frontend-red.vercel.app/blog/post",formData,{headers:{"Content-Type":"multipart/form-data", "authorization":"Bearer "+localStorage.getItem("token")}})
+          const result = await axios.post("https://blogpostbackend-v0uv.onrender.com/blog/post",formData,{headers:{"Content-Type":"multipart/form-data", "authorization":"Bearer "+localStorage.getItem("token")}})
           toast.success("Created successfully!!!", {position: "top-center",autoClose: 3000,hideProgressBar: false,pauseOnHover: true,draggable: true,})
           setTimeout(() => {
             navigat("/")

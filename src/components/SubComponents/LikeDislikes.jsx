@@ -10,7 +10,7 @@ const LikeDislikes = () => {
     const token = localStorage.getItem("token")
     const getlikes = async()=>{
         try {
-            const response = await axios.put(`https://blog-post-frontend-red.vercel.app/blog/put/${id}`,null,{headers:{"authorization":"Bearer "+(token&& token)}})
+            const response = await axios.put(`https://blogpostbackend-v0uv.onrender.com/blog/put/${id}`,null,{headers:{"authorization":"Bearer "+(token&& token)}})
             setlike(response.data.likes)
         } catch (error) {
             console.log(error)

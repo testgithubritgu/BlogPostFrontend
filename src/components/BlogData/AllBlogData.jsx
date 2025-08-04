@@ -22,7 +22,7 @@ const AllBlogData = () => {
   }
   useEffect(()=>{
     const getBolgesData = async ()=>{
-      const res = await axios.get("https://blog-post-frontend-red.vercel.app/blog/get")
+      const res = await axios.get("https://blogpostbackend-v0uv.onrender.com/blog/get")
       sethandleloader("hidden")
       setuserdata(res.data.blog)
     }
@@ -35,7 +35,7 @@ const AllBlogData = () => {
           <div key={i} onClick={()=>blogOnclickFunction(e)} className='p-2 min-h-[400px] cursor-pointer  w-[300px] text-neutral-500 border border-stone-200 rounded-lg  text-left hover:scale-[1.02] transition-all duration-300 shadow-md hover:shadow-2xl'>
          
                 <div className='mb-1 '>
-                    <img src={`https://blog-post-frontend-red.vercel.app/images/${e.blogImage}`} className='h-[200px] w-full'  alt="" />
+                    <img src={`https://blogpostbackend-v0uv.onrender.com/images/${e.blogImage}`} className='h-[200px] w-full'  alt="" />
                 </div>
                
                 <h1 className='text-stone-700 text-center'>{e.categeries}</h1>
