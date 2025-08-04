@@ -1,6 +1,21 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import { assets } from '../assets/assets'
+import axios from 'axios'
 const Aboutme = () => {
+  const requrl = window.location.href
+  const formdata = new FormData()
+  formdata.append("requrl",requrl)
+  const token = localStorage.getItem("token") && localStorage.getItem("token")
+  useEffect(()=>{
+      const addHistory = async ()=>{
+        try {
+            const res = await axios.post("http://localhost:5001/blog/allroutes",{requrl},{headers:{"authorization":"Bearer "+token}})
+        } catch (error) {
+          console.log(error)
+        }
+      }
+      addHistory()
+  },[])
   return (
     <div>
             <div className='relative overflow-hidden rounded-3xl my-[30px]'>

@@ -1,11 +1,26 @@
-import React from "react";
+import React, { useEffect } from "react";
 import email_img from "../assets/email_icon.svg"
 import {assets} from "../assets/assets"
 
 import { Link } from "react-router-dom";
+import axios from "axios";
 
 
 const Contact = () => {
+   const requrl = window.location.href
+    const formdata = new FormData()
+    formdata.append("requrl",requrl)
+    const token = localStorage.getItem("token") && localStorage.getItem("token")
+    useEffect(()=>{
+        const addHistory = async ()=>{
+          try {
+              const res = await axios.post("http://localhost:5001/blog/allroutes",{requrl},{headers:{"authorization":"Bearer "+token}})
+          } catch (error) {
+            console.log(error)
+          }
+        }
+        addHistory()
+    },[])
   return (
     <div id="contact" className="min-h-screen sm:py-20 bg-white">
       <div className="max-w-6xl mx-auto ">
