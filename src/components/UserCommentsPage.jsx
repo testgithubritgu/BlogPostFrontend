@@ -36,7 +36,7 @@ const UserCommentsPage = () => {
 
     const  requrl=window.location.href
       try {
-        const res = await axios.post(`http://localhost:5001/blog/getbyid/${id}`,{requrl},{headers:{"authorization":"Bearer "+(localStorage.getItem("token")&&localStorage.getItem("token"))}});
+        const res = await axios.post(`https://blog-post-frontend-red.vercel.app/blog/getbyid/${id}`,{requrl},{headers:{"authorization":"Bearer "+(localStorage.getItem("token")&&localStorage.getItem("token"))}});
         setgetblogs(res.data.blogs);
         setcheckAuthor(res.data.blogs.author === loggedUser._id);
         settextchange(res.data.blogs.content);

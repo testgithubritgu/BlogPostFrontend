@@ -24,7 +24,7 @@ const UserLoginResister = () => {
     const {name,email,password} = userData
     
     try {
-      const responce = await axios.post(`http://localhost:5001/auth/${state}`,{name,email,password},{headers:{"authorization":"Bearer "+localStorage.getItem("token")&& localStorage.getItem("token")}})
+      const responce = await axios.post(`https://blog-post-frontend-red.vercel.app/auth/${state}`,{name,email,password},{headers:{"authorization":"Bearer "+localStorage.getItem("token")&& localStorage.getItem("token")}})
       if(state === 'login'){
         localStorage.setItem("token",responce.data.token)
         localStorage.setItem("user",JSON.stringify(responce.data.user))

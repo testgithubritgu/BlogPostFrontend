@@ -11,7 +11,7 @@ const HistoryPage = () => {
     useEffect(()=>{
         const gethistory = async()=>{
           try{
-              const res = await axios.get(`http://localhost:5001/blog/history/${userId}`)
+              const res = await axios.get(`https://blogpostbackend-v0uv.onrender.com/blog/history/${userId}`)
             setuserdata(res.data.history || [])
             setcontrollLoader(false)
           }catch (er){

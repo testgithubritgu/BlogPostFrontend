@@ -31,7 +31,7 @@ const UserCommentSubComponent = ({
       "Are you sure you want to delete this blog?"
     );
     if (reconfirm) {
-      await axios.delete(`http://localhost:5001/blog/delet/${id}`, {
+      await axios.delete(`https://blogpostbackend-v0uv.onrender.com/blog/delet/${id}`, {
         headers: { authorization: "Bearer " + localStorage.getItem("token") },
       });
       toast.success("delete successfully", {
@@ -57,7 +57,7 @@ return
   const requrl = window.location.href
     try {
       const res = await axios.post(
-        `http://localhost:5001/blog/addcomments/${id}`,
+        `https://blogpostbackend-v0uv.onrender.com/blog/addcomments/${id}`,
         { text ,requrl},
         {
           headers: { authorization: "Bearer " + localStorage.getItem("token") },
@@ -74,7 +74,7 @@ return
   const deletcomments = async (i) => {
     try {
       const res = await axios.delete(
-        `http://localhost:5001/blog/deletcomments/${id}/${i}`,
+        `https://blogpostbackend-v0uv.onrender.com/blog/deletcomments/${id}/${i}`,
         {
           headers: { "authorization": "Bearer " + localStorage.getItem("token") },
         }
@@ -91,7 +91,7 @@ return
     const getcomments = async () => {
       try {
         const res = await axios.get(
-          `http://localhost:5001/blog/comments/${id}`,
+          `https://blogpostbackend-v0uv.onrender.com/blog/comments/${id}`,
           {
             headers: {
               authorization: "Bearer " + localStorage.getItem("token"),
@@ -139,7 +139,7 @@ return
           <p className="text-neutral-600 flex gap-4">
             {" "}
             <img
-              src={`http://localhost:5001/images/${getblogs.blogImage}`}
+              src={`https://blogpostbackend-v0uv.onrender.com/images/${getblogs.blogImage}`}
               className="h-[480px] w-[400px] object-fill grayscale bg-cover rounded-xl "
               alt=""
             />
