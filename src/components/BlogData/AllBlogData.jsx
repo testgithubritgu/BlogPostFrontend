@@ -1,10 +1,11 @@
 import React, { useContext, useEffect, useState } from 'react'
 import dummy from "../../assets/blog.jpg"
 import { useNavigate } from 'react-router-dom'
-
+import { motion } from 'motion/react'
 import axios from 'axios'
 import { AppContext } from '../../context/AppContextProvider'
 import { assets } from '../../assets/assets'
+import CreateBlogNavigationBar from './CreateBlogNavigationBar'
 const AllBlogData = () => {
   const [handleloader,sethandleloader] = useState()
   const [userdata,setuserdata] = useState([])
@@ -21,8 +22,11 @@ const AllBlogData = () => {
         navigat(`/users_posts/${e._id}`)
   }
   useEffect(()=>{
+    // const requrl = window.location.href
+    // const token  = localStorage.getItem("token")&& localStorage.getItem("token")
     const getBolgesData = async ()=>{
       const res = await axios.get("https://blogpostbackend-v0uv.onrender.com/blog/get")
+      // const addhistory = await axios.post("https://blogpostbackend-v0uv.onrender.com/blog/allroutes",{requrl},{headers:{"authorization":"Bearer "+token}})
       sethandleloader("hidden")
       setuserdata(res.data.blog)
     }
@@ -30,6 +34,7 @@ const AllBlogData = () => {
   },[])
   return (
     <div className='text-left relative  w-full flex justify-center sm:px-4 items-center flex-wrap gap-4' >
+      <CreateBlogNavigationBar/>
       {
         userdata && userdata.map((e,i)=>(
           <div key={i} onClick={()=>blogOnclickFunction(e)} className='p-2 min-h-[400px] cursor-pointer  w-[300px] text-neutral-500 border border-stone-200 rounded-lg  text-left hover:scale-[1.02] transition-all duration-300 shadow-md hover:shadow-2xl'>

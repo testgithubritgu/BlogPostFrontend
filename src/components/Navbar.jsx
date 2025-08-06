@@ -7,6 +7,7 @@ import { FaHome } from "react-icons/fa";
 import { FaPhoneAlt } from "react-icons/fa";
 import { CgProfile } from "react-icons/cg";
 import HistoryPage from "../pages/HistoryPage";
+import AllBlogData from "./BlogData/AllBlogData";
 
 const Navbar = () => {
   const { setshowLogin,userName } = useContext(AppContext);
@@ -31,7 +32,8 @@ navigate(`${e.path}`)
     {pathName:"home",path:"/",icon:<FaHome />},
     {pathName:"about",path:"/about",icon:<CgProfile />},
     {pathName:"contact",path:"/contact",icon:<FaPhoneAlt />},
-    {pathName:"myHistory",path:"/history",icon:<HistoryPage />}
+    {pathName:"blogs",path:"/user_blogs",icon:<AllBlogData />},
+    {pathName:"myHistory",path:"/history",icon:<HistoryPage />},
   
 
 

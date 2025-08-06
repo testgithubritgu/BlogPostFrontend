@@ -2,6 +2,7 @@ import React from 'react'
 
 import HomePageImageSection from '../components/HomePageImageSection'
 import BlogRoutes from '../components/BlogRoutes'
+import Costomers from "../components/Costomers"
 
 const Home = () => {
   return (
@@ -10,7 +11,7 @@ const Home = () => {
       
      <HomePageImageSection/>
       <BlogRoutes/>
-
+<Costomers/>
     </div>
   )
 }

@@ -6,7 +6,7 @@ const BlogRoutes = () => {
   return (
     <div className='min-h-fit flex justify-between items-top flex-col '>
         <CreateBlogNavigationBar/>
-        <AllBlogData/>
+    
       
     </div>
   )
