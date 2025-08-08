@@ -14,6 +14,7 @@ import AddEmoji from './Emoji/AddEmoji'
 import Notfound404 from './pages/Notfound404'
 import HistoryPage from './pages/HistoryPage'
 import Allblogs from './pages/Allblogs'
+import BlogData from './components/BlogData/BlogData'
 const App = () => {
   const { showLogin } = useContext(AppContext)
 const {showuseraccount,setshowuseraccount} =useContext(AppContext)
@@ -24,7 +25,7 @@ const {showuseraccount,setshowuseraccount} =useContext(AppContext)
       <div onClick={()=>setshowuseraccount(false)}>      
         <Routes>
         <Route path='/' element={<Home />} />
-        <Route path='/user_blogs' element={<Allblogs />} />
+        <Route path='/user_blogs' element={<BlogData />} />
         <Route path='/user_create_blog' element={<CreateBlog/>}/>
         <Route path='/users_posts/:id' element={<UserPost/>}/>
         <Route path='/about' element={<Aboutme/>}/>

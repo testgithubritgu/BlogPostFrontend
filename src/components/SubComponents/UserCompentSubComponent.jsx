@@ -47,7 +47,7 @@ const UserCommentSubComponent = ({
 
   const getcomments = async (e) => {
     e.preventDefault();
-    if(e.target.text.value === ''){
+    if((e.target.text.value).trim() === ''){
 settextfield(true)
 
 return

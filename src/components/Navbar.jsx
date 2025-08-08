@@ -8,6 +8,7 @@ import { FaPhoneAlt } from "react-icons/fa";
 import { CgProfile } from "react-icons/cg";
 import HistoryPage from "../pages/HistoryPage";
 import AllBlogData from "./BlogData/AllBlogData";
+import BlogData from "./BlogData/BlogData";
 
 const Navbar = () => {
   const { setshowLogin,userName } = useContext(AppContext);
@@ -15,9 +16,13 @@ const Navbar = () => {
     const [showUnderlineOnPathName,setshowUnderlineOnPathName] = useState(0)
     const urlpathName = window.location.pathname
    const {showLogin} = useContext(AppContext)
-  
+  const accountData = [
+    {icon:"👨‍🏫",name:"Account Setting",link:"/home"},
+    {icon:"📝",name:"My Blog",link:"/home"},
+    {icon:"📈",name:"My history",link:"/history"},
+  ]
    const logout =()=>{
-
+    setshowuseraccount(false)
     localStorage.removeItem("user")
     localStorage.removeItem("token")
 
@@ -32,8 +37,8 @@ navigate(`${e.path}`)
     {pathName:"home",path:"/",icon:<FaHome />},
     {pathName:"about",path:"/about",icon:<CgProfile />},
     {pathName:"contact",path:"/contact",icon:<FaPhoneAlt />},
-    {pathName:"blogs",path:"/user_blogs",icon:<AllBlogData />},
-    {pathName:"myHistory",path:"/history",icon:<HistoryPage />},
+    {pathName:"blogs",path:"/user_blogs",icon:<BlogData />},
+   
   
 
 
@@ -88,19 +93,39 @@ navigate(`${e.path}`)
           </div>
         ) : (
           <div className="flex relative items-center  gap-2 sm:gap-5">
-            <div onClick={()=>setshowuseraccount(!showuseraccount)} className="flex justify-center group items-center italic gap-4 cursor-pointer">
+            <div onClick={()=>setshowuseraccount(!showuseraccount)} className="flex z-50 justify-center group items-center italic gap-4 cursor-pointer">
               <img src={assets.dummy} className="h-7" alt="" />
               <h1>{`Welcome ${userName}😇`}</h1>
            
-         { showuseraccount &&  <button
+        
+              </div>
+            <IoExitOutline  onClick={() => logout()} className="block sm:hidden text-2xl" />
+               {   
+                      <div className={`bg-gray-300 text-neutral-700  font-serif w-full  rounded-xl absolute ${showuseraccount ?"scale-[1] ":"scale-0"} -mb-[150px] origin-top  z-40 transition-all duration-300  -bottom-16 gap-2 min-h-[200px] flex justify-between px-5    items-center flex-col`}>
+                      <div className="mt-3 text-sm  w-full text-left">
+                        <span>GENERAL</span>
+                        <div className="text-sm flex flex-col  text-neutral-500">
+                          
+                         {accountData?.map((e,i)=>(
+                           <span className="mt-2">
+                            <span className="mr-2">
+                              {e.icon}
+                            </span>
+                           <Link to={e.link}>{e.name}</Link>
+                          </span>
+                         ))}
+                        </div>
+                       
+                      </div>
+                        <button
               onClick={() => logout()}
-              className=" absolute -bottom-12  py-2 px-10 cursor-pointer bg-gray-900 text-white rounded-full "
+              className="  mb-5 py-2 px-7 cursor-pointer bg-blue-400 w-full text-white rounded-full "
               >
               logout
               
-              </button>}
-              </div>
-            <IoExitOutline  onClick={() => logout()} className="block sm:hidden text-2xl" />
+              </button>
+                      </div>
+         }
           </div>
         )}
       </div>

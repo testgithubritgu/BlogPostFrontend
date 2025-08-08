@@ -1,4 +1,4 @@
-import React, { useContext, useEffect, useRef, useState } from 'react'
+import React, { useContext, useEffect, useState } from 'react'
 import dummy from "../../assets/blog.jpg"
 import { useNavigate } from 'react-router-dom'
 import { motion } from 'motion/react'
@@ -6,18 +6,7 @@ import axios from 'axios'
 import { AppContext } from '../../context/AppContextProvider'
 import { assets } from '../../assets/assets'
 import CreateBlogNavigationBar from './CreateBlogNavigationBar'
-
-//Swiper js
-import {Swiper,SwiperSlide} from 'swiper/react';
-import 'swiper/css';
-import { Navigation, Pagination} from 'swiper/modules';
-import 'swiper/css/navigation';
-import 'swiper/css/pagination';
-import 'swiper/css/scrollbar';
-
-const AllBlogData = () => {
-    const prevRef =useRef(null)
-  const nextRef =useRef(null)
+const BlogData = () => {
   const [handleloader,sethandleloader] = useState()
   const [userdata,setuserdata] = useState([])
  
@@ -46,42 +35,8 @@ const AllBlogData = () => {
   return (
     <div className='text-left relative  w-full flex justify-center sm:px-4 items-center flex-wrap gap-4' >
       <CreateBlogNavigationBar/>
-       <div
-    ref={prevRef}
-    className="absolute top-1/2  md:-left-[30px] sm:-left-[30px] hidden sm:block  transform -translate-y-1/2 z-50 cursor-pointer text-6xl text-neutral-500 hover:text-blue-700 transition"
-  >
-    ❮
-  </div>
-
-  {/* Right Arrow */}
-  <div
-    ref={nextRef}
-    className="absolute top-1/2  md:-right-[50px] sm:-right-[50px] hidden sm:block  transform -translate-y-1/2 z-50 cursor-pointer  text-neutral-500 text-6xl hover:text-blue-700 transition"
-  >
-    ❯
-  </div>
-      <Swiper   modules={[Navigation,Pagination]}
-
-        pagination={{ clickable: true }}
-        spaceBetween={30}
-        slidesPerView={1}
-        onInit={(swiper)=>{
-          swiper.params.navigation.prevEl = prevRef.current
-          swiper.params.navigation.nextEl = nextRef.current
-          swiper.navigation.init()
-          swiper.navigation.update()
-
-        }}
-        breakpoints={{
-          640: { slidesPerView: 3 },
-          768: { slidesPerView: 5 },
-          1024: { slidesPerView: 5 },
-        }}>
-
-   
       {
         userdata && userdata.map((e,i)=>(
-          <SwiperSlide key={i} className='py-9'>
           <div key={i} onClick={()=>blogOnclickFunction(e)} className='p-2 min-h-[400px] cursor-pointer  w-[300px] text-neutral-500 border border-stone-200 rounded-lg  text-left hover:scale-[1.02] transition-all duration-300 shadow-md hover:shadow-2xl'>
          
                 <div className='mb-1 '>
@@ -95,10 +50,8 @@ const AllBlogData = () => {
                     {e.content.length>60?e.content.slice(0,60)+"...":e.content}
                 </p>
                 </div>
-                </SwiperSlide>
         ))
       }
-         </Swiper>
     <div className={`w-full ${handleloader} ` }>
       <img src={assets.penguin} className='h-[200px] mx-auto' alt="" />
     </div>
@@ -108,4 +61,4 @@ const AllBlogData = () => {
   )
 }
 
-export default AllBlogData
+export default BlogData
