@@ -8,7 +8,7 @@ const CreateBlogPost = () => {
   const [blogdata,setblogdata] = useState({})
   const [border,setborder] = useState(false)
   const navigat = useNavigate()
-
+  const  [controlPublish,setcontrolPublish] = useState(true)
   //handle form submit
   const formOnSubmit = async (e)=>{
     
@@ -16,11 +16,13 @@ const CreateBlogPost = () => {
         if(e.target.title.value === "" || e.target.content.value === "" || e.target.file === ""){
           if(e.target.file.files.length === 0){
             toast.warning("image😅 required")
+             setcontrolPublish(true)
             return 
           }
     
           if(e.target.file === ""){
             toast.warning("image😅 required")
+             setcontrolPublish(true)
             return
           }
             setborder(true)
@@ -32,8 +34,11 @@ const CreateBlogPost = () => {
           formData.append("file",blogdata.file)   
                formData.append("requrl",window.location.href)
         try {
+          setcontrolPublish(false)
           const result = await axios.post("http://localhost:5001/blog/post",formData,{headers:{"Content-Type":"multipart/form-data", "authorization":"Bearer "+localStorage.getItem("token")}})
+         setcontrolPublish(true)
           toast.success("Created successfully!!!", {position: "top-center",autoClose: 3000,hideProgressBar: false,pauseOnHover: true,draggable: true,})
+         setcontrolPublish(true)
           setTimeout(() => {
             navigat("/")
           }, 2000);
@@ -44,7 +49,7 @@ return (
     <>
     <ToastContainer/>
       <form onSubmit={(e)=>formOnSubmit(e)} className='min-h-fit mt-2 rounded-lg '>
-        <CreateBlogPostFormData border={border} blogdata={blogdata}  setblogdata={setblogdata}/>
+        <CreateBlogPostFormData controlPublish={controlPublish} setcontrolPublish={setcontrolPublish} border={border} blogdata={blogdata}  setblogdata={setblogdata}/>
       </form>
     </>
   )

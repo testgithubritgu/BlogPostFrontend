@@ -2,7 +2,7 @@ import React, { useRef, useState } from 'react'
 import { MdOutlineEmojiEmotions } from "react-icons/md";
 import { assets } from '../../assets/assets'
 import EmojiPicker from 'emoji-picker-react';
-const CreateBlogPostFormData = ({setblogdata,border}) => {
+const CreateBlogPostFormData = ({setblogdata,border,setcontrolPublish,controlPublish}) => {
   const [imgcontroller,setimgcontroler] = useState(assets.blog)
   const [showImagePicker,setshowImagePicker] = useState(false)
   const [getImageData,setgetImageData] = useState([])
@@ -32,7 +32,7 @@ const CreateBlogPostFormData = ({setblogdata,border}) => {
             <EmojiPicker   height={300} width={500} />
           </div>}
             <textarea ref={textareaRef} onChange={(e)=>onChangeinput(e)} name='content'  className={`block text-neutral-500 w-full outline-none mx-auto border ${border ? "border-red-500":"border-stone-200" } rounded-xl px-3 py-2`} placeholder='Tell Your Story' />
-        <button type='submit' className='mx-auto block py-3 px-5  bg-blue-500 text-white rounded-lg mt-3 cursor-pointer'>publish</button>
+        <button  type={`${controlPublish?"submit":"button"}`} className='mx-auto block py-3 px-5 min-h-12 min-w-44 bg-blue-500 text-white rounded-lg mt-3 cursor-pointer'>{controlPublish?"publish":<><img src={assets.loader} className='h-5 block mx-auto' alt="" /></>}</button>
      </div>
     
   

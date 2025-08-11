@@ -1,10 +1,12 @@
-import React, { useEffect } from 'react'
+import React, { useEffect, useState } from 'react'
 import { IoIosNotifications, IoMdSettings } from "react-icons/io";
 import { CgProfile } from 'react-icons/cg';
 import { FaLock } from 'react-icons/fa';
 import { IoPencilOutline } from 'react-icons/io5';
 const AccountForm = () => {
-    const id = localStorage.getItem("user")&& JSON.parse(localStorage.getItem("user"))._id
+    const userData = localStorage.getItem("user")&& JSON.parse(localStorage.getItem("user"))
+    const [email,setemail] = useState(userData.email)
+    const [name,setname] = useState(userData.name)
    
   return (
     <>
@@ -17,10 +19,10 @@ const AccountForm = () => {
 
                   <div className='flex flex-col gap-2 text-slate-500' >
                     <span>First name</span>
-                    <input className='px-4 py-3 outline-none border bg-transparent border-slate-500 rounded-lg ' placeholder='swapnil' type="text" />
+                    <input value={name} onChange={(e)=>setname(e.target.value)} className='px-4 py-3 outline-none border bg-transparent border-slate-500 rounded-lg ' placeholder={`${userData?.name}`} type="text" />
                   </div>
                   <div className='flex flex-col gap-2 text-slate-500'><span>Last name</span>
-                   <input className='px-4 py-3 outline-none border bg-transparent border-slate-500 rounded-lg ' placeholder='swapnil' type="text" /></div>
+                   <input className='px-4 py-3 outline-none border bg-transparent border-slate-500 rounded-lg ' placeholder='not provided' type="text" /></div>
                   
                   </div>
                 </div>
@@ -29,10 +31,10 @@ const AccountForm = () => {
 
                   <div className='flex flex-col gap-2 text-slate-500' >
                     <span>old Password</span>
-                    <input className='px-4 py-3 outline-none border bg-transparent border-slate-500 rounded-lg ' placeholder='swapnil' type="text" />
+                    <input className='px-4 py-3 outline-none border bg-transparent border-slate-500 rounded-lg ' placeholder='*****' type="text" />
                   </div>
                   <div className='flex flex-col gap-2 text-slate-500'><span>new Password</span>
-                   <div className='relative'> <input className='px-4 py-3 outline-none border bg-transparent border-slate-500 rounded-lg ' placeholder='swapnil' type="text" /><IoPencilOutline className='absolute top-[40%] right-2' /></div></div>
+                   <div className='relative'> <input className='px-4 py-3 outline-none border bg-transparent border-slate-500 rounded-lg ' placeholder='*****' type="text" /><IoPencilOutline className='absolute top-[40%] right-2' /></div></div>
                   
                   </div>
                 </div>
@@ -41,7 +43,7 @@ const AccountForm = () => {
 
                   <div className='flex flex-col gap-2 text-slate-500' >
                     <span>E-mail</span>
-                   <div className='relative'> <input className='px-4 py-3 outline-none border bg-transparent border-slate-500 rounded-lg ' placeholder='swapnil' type="text" /><IoPencilOutline className='absolute top-[40%] right-2' /></div>
+                   <div className='relative'> <input value={email} onChange={(e)=>setemail(e.target.value)} className='px-4 py-3 outline-none border bg-transparent border-slate-500 rounded-lg ' placeholder={`${userData?.email}`} type="text" /><IoPencilOutline className='absolute top-[40%] right-2' /></div>
                   </div>
                   <div className='flex flex-col gap-2 text-slate-500'><span>Phone number</span>
                        <div className='relative'> <input className='px-4 py-3 outline-none border bg-transparent border-slate-500 rounded-lg ' placeholder='xxxx798' type="text" /><IoPencilOutline className='absolute top-[40%] right-2' /></div></div>

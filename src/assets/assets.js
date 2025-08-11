@@ -31,9 +31,11 @@ import penguin from "./bar-penguin.gif"
 import cavman from "./cavman.gif"
 import dummy from "./dummy.jpg"
 import blogpen from "./blogpen.jpg"
+import loader from "./loading-image.gif"
 export const assets = {
     logo,
     dummy,
+    loader,
     blogpen,
     cavman,
     study,
