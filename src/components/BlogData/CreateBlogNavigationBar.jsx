@@ -1,8 +1,9 @@
-import React, { useContext, useState } from 'react'
+import React, { useContext, useEffect, useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { AppContext } from '../../context/AppContextProvider'
 import { motion } from 'motion/react'
 const CreateBlogNavigationBar = () => {
+  const {filterName,setfilterName} = useContext(AppContext)
   const [check,setcheck] = useState(0)
     const navigate = useNavigate()
     const {showLogin} = useContext(AppContext)
@@ -12,8 +13,13 @@ const CreateBlogNavigationBar = () => {
         {name:"Movies"},
         {name:"Fashion"},
         {name:"Sports"},
-        {name:"Tech"}
+        {name:"Teck"}
     ]
+    const onBlogNavigateBtnClick=(e,i)=>{
+      setcheck(i)
+      setfilterName(e.name)
+    } 
+  
   return (
     <div 
    
@@ -27,7 +33,7 @@ const CreateBlogNavigationBar = () => {
             categeries.map((e,i)=>(
                 <button key={i}
             
-                onClick={(e)=>setcheck(i)} className={`py-3 max-w-[200px] rounded-md w-full text-left px-3  border border-stone-300 ${check === i?"bg-blue-500 text-white":""} transition-all duration-300 hover:bg-blue-500 hover:text-white`}>{e.name}</button>
+                onClick={()=>onBlogNavigateBtnClick(e,i)} className={`py-3 max-w-[200px] rounded-md w-full text-left px-3  border border-stone-300 ${check === i?"bg-blue-500 text-white":""} transition-all duration-300 hover:bg-blue-500 hover:text-white`}>{e.name}</button>
             ))
         }
     </div>

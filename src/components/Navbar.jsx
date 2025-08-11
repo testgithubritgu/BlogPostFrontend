@@ -17,8 +17,8 @@ const Navbar = () => {
     const urlpathName = window.location.pathname
    const {showLogin} = useContext(AppContext)
   const accountData = [
-    {icon:"👨‍🏫",name:"Account Setting",link:"/home"},
-    {icon:"📝",name:"My Blog",link:"/home"},
+    {icon:"👨‍🏫",name:"Account Setting",link:"/myaccountsetting"},
+    {icon:"📝",name:"My Blog",link:"/myblogPost"},
     {icon:"📈",name:"My history",link:"/history"},
   ]
    const logout =()=>{

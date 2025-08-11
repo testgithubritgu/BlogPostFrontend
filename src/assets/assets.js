@@ -30,9 +30,11 @@ import spiderman from "./spiderman.jpg"
 import penguin from "./bar-penguin.gif"
 import cavman from "./cavman.gif"
 import dummy from "./dummy.jpg"
+import blogpen from "./blogpen.jpg"
 export const assets = {
     logo,
     dummy,
+    blogpen,
     cavman,
     study,
     github,
