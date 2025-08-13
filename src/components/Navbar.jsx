@@ -93,7 +93,7 @@ navigate(`${e.path}`)
           </div>
         ) : (
           <div className="flex relative items-center  gap-2 sm:gap-5">
-            <div onClick={()=>setshowuseraccount(!showuseraccount)} className="flex z-50 justify-center group items-center italic gap-4 cursor-pointer">
+            <div onClick={()=>setshowuseraccount(!showuseraccount)} className="flex  justify-center group items-center italic gap-4 cursor-pointer">
               <img src={assets.dummy} className="h-7" alt="" />
               <h1>{`Welcome ${userName}😇`}</h1>
            
