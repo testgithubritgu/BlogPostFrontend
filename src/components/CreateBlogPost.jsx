@@ -35,7 +35,7 @@ const CreateBlogPost = () => {
                formData.append("requrl",window.location.href)
         try {
           setcontrolPublish(false)
-          const result = await axios.post("http://localhost:5001/blog/post",formData,{headers:{"Content-Type":"multipart/form-data", "authorization":"Bearer "+localStorage.getItem("token")}})
+          const result = await axios.post("https://blogpostbackend-v0uv.onrender.com/blog/post",formData,{headers:{"Content-Type":"multipart/form-data", "authorization":"Bearer "+localStorage.getItem("token")}})
          setcontrolPublish(true)
           toast.success("Created successfully!!!", {position: "top-center",autoClose: 3000,hideProgressBar: false,pauseOnHover: true,draggable: true,})
          setcontrolPublish(true)

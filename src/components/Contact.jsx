@@ -14,7 +14,7 @@ const Contact = () => {
     useEffect(()=>{
         const addHistory = async ()=>{
           try {
-              const res = await axios.post("http://localhost:5001/blog/allroutes",{requrl},{headers:{"authorization":"Bearer "+token}})
+              const res = await axios.post("https://blogpostbackend-v0uv.onrender.com/blog/allroutes",{requrl},{headers:{"authorization":"Bearer "+token}})
           } catch (error) {
             console.log(error)
           }

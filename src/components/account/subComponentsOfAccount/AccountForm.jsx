@@ -9,7 +9,7 @@ const AccountForm = () => {
   const [ispassMismatch,setispassMismatch] = useState(false)
   const [settingData, setsettingData] = useState({})
     const userData = localStorage.getItem("user")&& JSON.parse(localStorage.getItem("user"))
-    console.log(settingData)
+
     const onchangedata = (e)=>{
       const val = e.target.value
       setsettingData(prev => ({...prev,[e.target.name]:val}))
@@ -19,7 +19,7 @@ const AccountForm = () => {
       e.preventDefault()
       
       try {
-        const res = await axios.put(`http://localhost:5001/auth/updateaccount`,settingData,{headers:{"authorization":"Bearer "+(localStorage.getItem("token") && localStorage.getItem("token"))}})
+        const res = await axios.put(`https://blogpostbackend-v0uv.onrender.com/auth/updateaccount`,settingData,{headers:{"authorization":"Bearer "+(localStorage.getItem("token") && localStorage.getItem("token"))}})
         setispassMismatch(false)
         toast.success("Account Updated Succesfully")
         setTimeout(() => {
