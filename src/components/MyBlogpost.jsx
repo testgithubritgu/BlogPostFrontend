@@ -12,18 +12,23 @@ navigate(`/users_posts/${blogId}`)
   }
   useEffect(() => {
     async function getMyBlogs() {
-      const res = await axios.post(
-        `https://blogpostbackend-v0uv.onrender.com/blog/userblogs`,
-        null,
-        {
-          headers: {
-            authorization:
-              "Bearer " +
-              (localStorage.getItem("token") && localStorage.getItem("token")),
-          },
-        }
-      );
-      setmyBlogs(res.data.myblogs[0].blg);
+    try {
+        const res = await axios.post(
+          `https://blogpostbackend-v0uv.onrender.com/blog/userblogs`,
+          null,
+          {
+            headers: {
+              authorization:
+                "Bearer " +
+                (localStorage.getItem("token") &&
+                  localStorage.getItem("token")),
+            },
+          }
+        );
+        setmyBlogs(res.data.myblogs[0].blg);
+    } catch (error) {
+        console.log('error in blogposts')
+    }
    
     }
     getMyBlogs();
