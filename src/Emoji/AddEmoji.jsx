@@ -7,6 +7,7 @@ const AddEmoji = () => {
   return (
     <div className='w-full flex justify-center'>
       <img src="" alt="" />
+      <img src="" alt="" />
     </div>
   )
 }
