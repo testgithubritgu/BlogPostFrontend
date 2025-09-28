@@ -36,6 +36,7 @@ const App = () => {
           <Route path='/myblogPost' element={<MyBlogpost />} />
           <Route path='/myaccountsetting' element={<AcoountSetting />} />
         {/* from s1 branch */}
+        {/* from feature s4 */}
           <Route path='*' element={<Notfound404 />} />
         </Routes>
         <AddEmoji />
