@@ -36,6 +36,7 @@ const App = () => {
           <Route path='/myblogPost' element={<MyBlogpost />} />
           <Route path='/myaccountsetting' element={<AcoountSetting />} />
           <Route path='/myaccountsetting2' element={<AcoountSetting />} />
+          <Route path='/myaccountsetting3' element={<AcoountSetting />} />
           <Route path='*' element={<Notfound404 />} />
         </Routes>
         <AddEmoji />
