@@ -35,7 +35,12 @@ const App = () => {
           <Route path='/history' element={<HistoryPage />} />
           <Route path='/myblogPost' element={<MyBlogpost />} />
           <Route path='/myaccountsetting' element={<AcoountSetting />} />
+<<<<<<< HEAD
        {/* kk  */} 
+=======
+       {/* kk  */}
+       {/* my3  */}
+>>>>>>> 5e94c96672cc2e6121010a31bf0b7a65cd026627
           <Route path='*' element={<Notfound404 />} />
         </Routes>
         <AddEmoji />
