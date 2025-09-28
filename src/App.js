@@ -37,6 +37,7 @@ const App = () => {
           <Route path='/myaccountsetting' element={<AcoountSetting />} />
         {/* from s1 branch */}
         {/* from feature s4 */}
+        {/* from feature main */}
           <Route path='*' element={<Notfound404 />} />
         </Routes>
         <AddEmoji />
